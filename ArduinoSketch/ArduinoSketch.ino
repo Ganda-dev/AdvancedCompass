@@ -1,15 +1,16 @@
 #include "gps.h" //gps
-//#include "lcd.h" //lcd(opzionale)
+#include "steppermotor.h"
+#include "lcd.h" //lcd(opzionale)
 void setup() {
   Serial.begin(115200);
-    GPSSetup();
-    
-  #if defined(LCDSetup)
-    LCDSetup();
-  #endif
+  Serial.setTimeout(1000);
+  GPSSetup();
+  stepMotorSetup();    
+  LCDSetup();
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   getGPSInfo();
+  getAngle();
 }
